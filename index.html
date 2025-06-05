@@ -5,43 +5,96 @@
   <title>Happy Birthday Love</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
+      overflow: hidden;
     }
+
     .message-box {
-      background: white;
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.9);
+      margin: 10vh auto 0;
       padding: 40px;
       border-radius: 25px;
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      animation: fadeIn 2s ease;
+      text-align: center;
       max-width: 90%;
+      width: 600px;
+      animation: fadeIn 2s ease;
     }
+
     h1 {
       font-size: 3em;
       color: #ff1493;
     }
+
     p {
       font-size: 1.5em;
       color: #d6336c;
       line-height: 1.6;
     }
+
+    .photo {
+      margin-top: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 5px solid #ff69b4;
+      object-fit: cover;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
     }
+
+    .falling {
+      position: fixed;
+      top: -50px;
+      z-index: 1;
+      color: pink;
+      font-size: 24px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
+
   <div class="message-box">
     <h1>Happy Birthday Love 🎂💖</h1>
-    <p>I love you so freaking much!!! </p>
-    <p>You deserve the absolutely best things in your life 😘</p>
+    <p>I love you so freaking much and you deserve the absolutely best things in your life 😘</p>
+    <img src="your-photo.jpg" alt="Us Together" class="photo">
   </div>
+
+  <!-- Falling Hearts and Flowers -->
+  <script>
+    const symbols = ["💖", "🌸", "💘", "🌷", "💞", "💐"];
+    const count = 60;
+
+    for (let i = 0; i < count; i++) {
+      const span = document.createElement('span');
+      span.className = 'falling';
+      span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.animationDuration = (5 + Math.random() * 5) + "s";
+      span.style.fontSize = (16 + Math.random() * 24) + "px";
+      document.body.appendChild(span);
+    }
+  </script>
+
 </body>
 </html>
